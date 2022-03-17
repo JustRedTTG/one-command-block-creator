@@ -1,0 +1,9 @@
+$default-start
+
+^ Show how awesome my code is!
+say one
+say command
+say block
+say creation!
+
+$default-end
