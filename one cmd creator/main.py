@@ -8,8 +8,12 @@ file = os.path.join('commands', project, project+'.txt')
 
 if not os.path.exists(file):
     with open(file, 'w') as f:
-        f.write("""$default-start""")
+        f.write(f"""$default-start
+^Project name: {project}
 
+$default-end""")
+os.system("cls")
+print('')
 last = 0
 while True:
     while last == os.stat(file).st_mtime:
