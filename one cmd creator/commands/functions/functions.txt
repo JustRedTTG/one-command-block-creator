@@ -1,9 +1,20 @@
 $default-start
 
 >$box
-^ x y z length height width glassblock side1block side2block
+^ 1 2 3 4      5      6     7          8          9
+^ x y z length height width glassblock side2block side1block
 
-fill ~%1% ~%2% ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+^ fill ~%1% ~%2% ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+
+fill ~%1% ~%2% ~%3% ~#$%1%+%4%#$ ~%2% ~#$%3%+%6%#$ minecraft:%7%
+fill ~%1% ~#$%2%+%5%#$ ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+
+fill ~%1% ~%2% ~%3% ~%1% ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+fill ~#$%1%+%4%#$ ~%2% ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+
+fill ~%1% ~%2% ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~%3% minecraft:%7%
+fill ~%1% ~%2% ~#$%3%+%6%#$ ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~#$%3%+%6%#$ minecraft:%7%
+
 fill ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+1#$ ~#$%1%+%4%-1#$ ~#$%2%+%5%-1#$ ~#$%3%+%6%-1#$ air
 
 ^ First side
@@ -32,6 +43,14 @@ setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+4#$ chain_command_block[facing=up]{auto:1,
 setblock ~#$%1%+1#$ ~#$%2%+2#$ ~#$%3%+4#$ chain_command_block[facing=up]{auto:1,Command:"fill ~-1 ~-2 ~-5 ~#$%4%-1#$ ~#$%5%-1#$ ~#$%6%-4#$ air"}
 setblock ~#$%1%+1#$ ~#$%2%+1#$ ~%3% minecraft:%8%
 setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%-1#$ stone_button[facing=north]
+<
+
+>$mob-fill
+^ 1 2 3 4  5  6  7
+^ x y z x2 y2 z2 mob
+
+fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% command_block{auto:1, Command:"summon minecraft:%7% ~ ~ ~"}
+fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% air
 <
 
 $default-end
