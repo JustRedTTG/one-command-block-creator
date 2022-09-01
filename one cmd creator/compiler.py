@@ -2,8 +2,27 @@ import os
 functions = {}
 mounts = {}
 
-def mount(string:str, filename='unknown', origin=''):
-    print(f"Mount {filename}{' <<< ' if origin else ''}{origin}")
+def variable_split(data):
+    variable = ''
+    variables = []
+    string = False
+    i = 0
+    while i<len(data):
+        if data[i] == '"':
+            string = not string
+        elif data[i] == ' ' and not string:
+            variables.append(variable)
+            variable = ''
+        else:
+            variable += data[i]
+        i += 1
+    variables.append(variable)
+    return variables
+    
+
+def mount(string:str, filename='unknown', origin='', quiet = False):
+    if not quiet:
+        print(f"Mount {filename}{' <<< ' if origin else ''}{origin}")
     # Functions
     final = ''
     issues = []
@@ -47,17 +66,14 @@ def mount(string:str, filename='unknown', origin=''):
                 function_name = line[1:len(line)].split(' ')[0]
                 function = functions[function_name]
                 i = 0
-                variables = line[1:len(line)].split(' ')
+                variables = variable_split(line[1:len(line)])
                 while i < len(variables):
                     function = function.replace(f'%{i}%', variables[i])
                     i += 1
-                if not function_name in list(mounts):
-                    function, iss = mount(function, '$'+function_name, f'"{filename}"')
-                    issues += iss
-                    mounts[function_name] = function
-                    changes = True
-                else:
-                    function = mounts[function_name]
+                function, iss = mount(function, '$'+function_name, f'"{filename}"', True)
+                issues += iss
+                mounts[function_name] = function
+                changes = True
                 final += function
             except KeyError:
                 function_name = line[1:len(line)].split(' ')[0]
@@ -72,6 +88,7 @@ def mount(string:str, filename='unknown', origin=''):
     while lineI <= len(lines):
         line = lines[lineI - 1]
         squig = '#$'
+        squig2 = '//'
         if len(line.split(squig))>1 and int(len(line.split(squig))/2) != len(line.split(squig))/2:
             dips = line.split(squig)
             index = 0
@@ -87,11 +104,27 @@ def mount(string:str, filename='unknown', origin=''):
             final += line + '\n'
         elif len(line.split(squig))>1 and int(len(line.split(squig))/2) == len(line.split(squig))/2:
             issues.append(f'[{origin}{" | " if origin else ""}mount:{lineI}:{filename}] - Missing closing {squig}')
+        elif len(line.split(squig2))>1 and int(len(line.split(squig2))/2) != len(line.split(squig2))/2:
+            dips = line.split(squig2)
+            index = 0
+            while index < len(dips)-1:
+                string = dips[index+1]
+                index += 2
+                try:
+                    result = string.replace('"', '\\"')
+                except:
+                    issues.append(f'[{origin}{" | " if origin else ""}mount:{lineI}:{filename}] - Cannot fix "{string}"')
+                    result = 0
+                line = line.replace(f'{squig2}{string}{squig2}', result)
+            final += line + '\n'
+        elif len(line.split(squig2))>1 and int(len(line.split(squig2))/2) == len(line.split(squig2))/2:
+            issues.append(f'[{origin}{" | " if origin else ""}mount:{lineI}:{filename}] - Missing closing {squig2}')
         else:
             final += line + '\n'
         lineI += 1
     if changes or origin == 'MAIN':
-        print(f'       {filename}\n')
+        if not quiet:
+            print(f'       {filename}\n')
     return final, issues
 
 def compile(string:str, issues):

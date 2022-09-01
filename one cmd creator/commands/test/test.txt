@@ -8,6 +8,5 @@ $<functions
 ^    x y  z l h w gb    sb1  sb2
 $box 1 -2 1 4 6 6 glass dirt stone
 
-
 ^ This cleans up the one command block mess.
 $default-end

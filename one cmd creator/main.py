@@ -4,13 +4,13 @@ from colorama import Fore
 from defaults import functions
 
 project = input("Project name: ")
-if not os.path.exists(os.path.join('commands', project)):
-    os.makedirs(os.path.join('commands', project))
 file = os.path.join('commands', project, project+'.txt')
 
 if not os.path.exists(file):
     if input(f"Make a new project called {project} - Y/N : ").lower() != 'y':
         exit()
+    if not os.path.exists(os.path.join('commands', project)):
+        os.makedirs(os.path.join('commands', project))
     with open(file, 'w') as f:
         f.write(f"""$default-start
 ^ Project name: {project}
