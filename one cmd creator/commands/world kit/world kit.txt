@@ -1,0 +1,20 @@
+$default-start
+^ Project name: world kit
+
+^ Setup the world
+gamerule commandBlockOutput false
+gamerule doDaylightCycle false
+time set day
+
+>$clean
+tellraw @p [""]
+<
+
+$clean
+$clean
+tellraw @p [{"text":"Thanks for using world kit!","bold":true,"underlined":true,"color":"blue"}]
+tellraw @p [{"text":"Your world has been setup","color":"dark_red"}]
+$clean
+$clean
+
+$default-fullend
