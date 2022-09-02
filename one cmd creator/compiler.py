@@ -129,15 +129,18 @@ def mount(string:str, filename='unknown', origin='', quiet = False):
 
 def compile(string:str, issues):
     print("Compiling command...")
-    final = 'summon minecraft:falling_block ~ ~1 ~ {Time:1,BlockState:{Name:"minecraft:redstone_block"},Passengers:['
+    starter = 'summon minecraft:falling_block ~ ~1 ~ {Time:1,BlockState:{Name:"minecraft:redstone_block"},Passengers:['
+    final = ''
 
     for line in string.splitlines():
         if line == '' or line.startswith('^'):
             continue
         if line.startswith('@'):
-            final += '{id:"minecraft:falling_block",BlockState:{Name:"'+line[1:len(line)]+'"},Time:1}'
+            final += line[1:len(line)]
+        if line.startswith('?'):
+            starter = line[1:len(line)]
         else:
             final += '{id:"minecraft:command_block_minecart",Command:"'+line.replace('"','\\"')+'"}'
-        final += ','
+            final += ','
     final += ']}'
-    return final, issues
+    return starter+final, issues
