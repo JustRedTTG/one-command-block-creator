@@ -36,11 +36,11 @@ fill ~%1% ~%2% ~#$%3%+%6%#$ ~#$%1%+%4%#$ ~%2% ~#$%3%+%6%#$ minecraft:%9%
 fill ~%1% ~#$%2%+%5%#$ ~%3% ~#$%1%+%4%#$ ~#$%2%+%5%#$ ~%3% minecraft:%8%
 
 ^ Erase
-setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+1#$ command_block[facing=south]{Command:"fill ~ ~ ~-2 ~#$%4%-2#$ ~#$%5%-2#$ ~-2 air replace stone_button"}
-setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+2#$ chain_command_block[facing=south]{auto:1,Command:"fill ~ ~ ~-3 ~#$%4%-2#$ ~#$%5%-2#$ ~-3 air replace sign"}
-setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+3#$ chain_command_block[facing=south]{auto:1,Command:"fill ~ ~ ~-4 ~#$%4%-2#$ ~#$%5%-2#$ ~-4 air replace wall_sign"}
-setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%+4#$ chain_command_block[facing=up]{auto:1,Command:"fill ~ ~ ~-5 ~#$%4%-2#$ ~#$%5%-2#$ ~-5 air replace lever"}
-setblock ~#$%1%+1#$ ~#$%2%+2#$ ~#$%3%+4#$ chain_command_block[facing=up]{auto:1,Command:"fill ~-1 ~-2 ~-5 ~#$%4%-1#$ ~#$%5%-1#$ ~#$%6%-4#$ air"}
+$command_block #$%1%+1#$ #$%2%+1#$ #$%3%+1#$ south 0 "fill ~ ~ ~-2 ~#$%4%-2#$ ~#$%5%-2#$ ~-2 air replace stone_button"
+$chain_command_block #$%1%+1#$ #$%2%+1#$ #$%3%+2#$ south 1 "fill ~ ~ ~-3 ~#$%4%-2#$ ~#$%5%-2#$ ~-3 air replace sign"
+$chain_command_block #$%1%+1#$ #$%2%+1#$ #$%3%+3#$ south 1 "fill ~ ~ ~-4 ~#$%4%-2#$ ~#$%5%-2#$ ~-4 air replace wall_sign"
+$chain_command_block #$%1%+1#$ #$%2%+1#$ #$%3%+4#$ up 1 "fill ~ ~ ~-5 ~#$%4%-2#$ ~#$%5%-2#$ ~-5 air replace lever"
+$chain_command_block #$%1%+1#$ #$%2%+2#$ #$%3%+4#$ up 1 "fill ~-1 ~-2 ~-5 ~#$%4%-1#$ ~#$%5%-1#$ ~#$%6%-4#$ air"
 setblock ~#$%1%+1#$ ~#$%2%+1#$ ~%3% minecraft:%8%
 setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%-1#$ stone_button[facing=north]
 <
@@ -49,8 +49,10 @@ setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%-1#$ stone_button[facing=north]
 ^ 1 2 3 4  5  6  7
 ^ x y z x2 y2 z2 mob
 
-fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% command_block{auto:1, Command:"summon minecraft:%7% ~ ~ ~"}
 fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% air
+fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% command_block{auto:1, Command:"summon minecraft:%7% ~ ~ ~"}
+$repeating_command_block %4% %5% #$%6%+1#$ down 1 "execute as @e[type=minecraft:armor_stand, distance=..2,limit=1,nbt={Fire:49s,Small:1b}] run fill ~ ~ ~ ~-%4% ~-%5% ~-%6% air"
+summon minecraft:armor_stand ~%4% ~#$%5%+1#$ ~#$%6%+1#$ {Fire:50s, Health:5f, Small:1b, Invisible:1b}
 <
 
 >$command_block
