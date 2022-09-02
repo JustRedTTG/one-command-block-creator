@@ -6,6 +6,26 @@ gamerule commandBlockOutput false
 gamerule doDaylightCycle false
 time set day
 
+^ Setup a plot
+fill ~-5 ~-3 ~-5 ~5 ~-3 ~5 bedrock
+setblock ~ ~-3 ~ stone
+setblock ~ ~-3 ~1 stone
+setblock ~1 ~-3 ~ stone
+setblock ~ ~-3 ~-1 stone
+setblock ~-1 ~-3 ~ stone
+fill ~-5 ~-2 ~-5 ~-1 ~5 ~-1 air
+fill ~5 ~-2 ~5 ~1 ~5 ~1 air
+fill ~-5 ~-2 ~5 ~-1 ~5 ~1 air
+fill ~5 ~-2 ~-5 ~1 ~5 ~-1 air
+fill ~5 ~-2 ~ ~1 ~5 ~ air
+fill ~-5 ~-2 ~ ~-1 ~5 ~ air
+fill ~ ~-2 ~5 ~ ~5 ~1 air
+fill ~ ~-2 ~-5 ~ ~5 ~-1 air
+
+^ Setup spawn
+setworldspawn ~ ~-2 ~
+spawnpoint @a ~ ~-2 ~
+
 >$clean
 tellraw @p [""]
 <
