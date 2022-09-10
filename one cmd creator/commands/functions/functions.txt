@@ -51,7 +51,7 @@ setblock ~#$%1%+1#$ ~#$%2%+1#$ ~#$%3%-1#$ stone_button[facing=north]
 
 fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% air
 fill ~%1% ~%2% ~%3% ~%4% ~%5% ~%6% command_block{auto:1, Command:"summon minecraft:%7% ~ ~ ~"}
-$repeating_command_block %4% %5% #$%6%+1#$ down 1 "execute as @e[type=minecraft:armor_stand, distance=..2,limit=1,nbt={Fire:49s,Small:1b}] run fill ~ ~ ~ ~-%4% ~-%5% ~-%6% air"
+$repeating_command_block %4% %5% #$%6%+1#$ down 1 "execute as @e[type=minecraft:armor_stand, distance=..2,limit=1,nbt={Fire:49s,Small:1b}] run fill ~ ~ ~ ~-#$%4%-%1%#$ ~-#$%5%-%2%#$ ~-#$%6%-%3%+1#$ air"
 summon minecraft:armor_stand ~%4% ~#$%5%+1#$ ~#$%6%+1#$ {Fire:50s, Health:5f, Small:1b, Invisible:1b}
 <
 
