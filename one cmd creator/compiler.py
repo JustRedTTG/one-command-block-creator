@@ -18,7 +18,7 @@ def variable_split(data):
         i += 1
     variables.append(variable)
     return variables
-    
+
 
 def mount(string:str, filename='unknown', origin='', quiet = False):
     if not quiet:
@@ -33,13 +33,13 @@ def mount(string:str, filename='unknown', origin='', quiet = False):
         line = lines[lineI-1]
         if line.startswith('>$'):
             name = line[2:len(line)]
-            if name in list(functions): 
+            if name in list(functions):
                 while True:
                     line = lines[lineI-1]
                     if line.startswith('<'):
                         break
                     lineI += 1
-                
+
             function = ''
             lineI += 1
             while not name in list(functions):
@@ -141,6 +141,10 @@ def compile(string:str, issues):
             starter = line[1:len(line)]
         else:
             final += '{id:"minecraft:command_block_minecart",Command:"'+line.replace('"','\\"')+'"}'
-            final += ','
+        final += ','
+        if len(final)>32497:
+            issues.append("TOO BIG")
+            final = "say TOO BIG!!"
+            break
     final += ']}'
     return starter+final, issues
