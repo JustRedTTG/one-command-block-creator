@@ -11,7 +11,7 @@ def configure_top_texts(config: Config):
                                       config.top_panel_font_size,
                                       colors = (config.style.text_color, None)
                                     ))
-    config.top_panel_text_height = config.top_panel_texts[0].rect[3]
+    config.top_panel_text_height = config.top_panel_texts[0].rect[3] + config.style.top_panel_button_padding_vertical
 
 
 

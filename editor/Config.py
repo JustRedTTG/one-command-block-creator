@@ -37,10 +37,12 @@ class Config:
     left_panel_surface: Surface = None
     file_panel_surface: Surface = None
     top_panel_surface: Surface = None
+    top_sub_panel_surface: Surface = None
     code_panel_surface: Surface = None
 
     # Temporary switches
     top_panel_active: bool = False
+    top_sub_panel_active: bool = False
 
     # Temporary font data
     top_panel_font_size: int = 12
