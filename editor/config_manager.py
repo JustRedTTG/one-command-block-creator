@@ -40,8 +40,12 @@ def initialize() -> Config:
     config.font_filepaths = Fonts
     config.font_filepaths.regular = os.path.join(data_folder, 'fonts', config.font_filepaths.regular)
     config.font_filepaths.regular_italic = os.path.join(data_folder, 'fonts', config.font_filepaths.regular_italic)
+
     config.font_filepaths.bold = os.path.join(data_folder, 'fonts', config.font_filepaths.bold)
     config.font_filepaths.bold_italic = os.path.join(data_folder, 'fonts', config.font_filepaths.bold_italic)
+
+    config.font_filepaths.thin = os.path.join(data_folder, 'fonts', config.font_filepaths.thin)
+    config.font_filepaths.thin_italic = os.path.join(data_folder, 'fonts', config.font_filepaths.thin_italic)
 
     return config
 

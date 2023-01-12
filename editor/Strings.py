@@ -1,2 +1,5 @@
-top_panel_identifiers = ("file", "edit")
-top_panel_file_identifiers = ("new_project", "new", "settings")
+top_panel_identifiers: tuple[str, ...] = ("file", "edit")
+top_sub_panel_identifiers: dict[str, tuple[str, ...]] = {
+    "file":("new_project", "new", "open", '_%_', "settings"),
+    "edit":("undo", "redo", '_%_', "cut", "copy", "paste", "delete")
+}

@@ -1,10 +1,63 @@
-@minecraft:activator_rail
+^ This sets up the rail and redstone block to activate the commands.
+@{id:"minecraft:falling_block",BlockState:{Name:"minecraft:activator_rail"},Time:1}
 
-^ Show how awesome my code is!
-say one
-say command
-say block
-say creation!
+^ The following imports the functions project.
 
+^ Run the box function
+^    x y  z l h w gb    sb1  sb2
+^ 1 2 3 4      5      6     7          8          9
+^ x y z length height width glassblock side2block side1block
+
+^ fill ~1 ~-2 ~1 ~5 ~4 ~7 minecraft:glass
+
+fill ~1 ~-2 ~1 ~5 ~-2 ~7 minecraft:glass
+fill ~1 ~4 ~1 ~5 ~4 ~7 minecraft:glass
+
+fill ~1 ~-2 ~1 ~1 ~4 ~7 minecraft:glass
+fill ~5 ~-2 ~1 ~5 ~4 ~7 minecraft:glass
+
+fill ~1 ~-2 ~1 ~5 ~4 ~1 minecraft:glass
+fill ~1 ~-2 ~7 ~5 ~4 ~7 minecraft:glass
+
+fill ~2 ~-1 ~2 ~4 ~3 ~6 air
+
+^ First side
+fill ~1 ~-2 ~1 ~5 ~-2 ~1 minecraft:dirt
+fill ~5 ~-2 ~1 ~5 ~-2 ~7 minecraft:dirt
+fill ~1 ~-2 ~1 ~1 ~4 ~1 minecraft:dirt
+fill ~5 ~-2 ~1 ~5 ~4 ~1 minecraft:dirt
+fill ~1 ~-2 ~1 ~1 ~-2 ~7 minecraft:dirt
+
+^ Second side
+fill ~5 ~4 ~7 ~5 ~-2 ~7 minecraft:stone
+fill ~1 ~4 ~7 ~1 ~-2 ~7 minecraft:stone
+fill ~5 ~4 ~7 ~5 ~4 ~1 minecraft:stone
+fill ~5 ~4 ~7 ~1 ~4 ~7 minecraft:stone
+fill ~1 ~4 ~7 ~1 ~4 ~1 minecraft:stone
+
+^ Final edges
+fill ~1 ~-2 ~7 ~5 ~-2 ~7 minecraft:stone
+fill ~1 ~4 ~1 ~5 ~4 ~1 minecraft:dirt
+
+^ Erase
+^ 1 2 3 4         5    6
+^ x y z direction auto command
+setblock ~2 ~-1 ~2 command_block[facing=south]{auto:0,Command:"fill ~ ~ ~-2 ~2 ~4 ~-2 air replace stone_button"}
+^ 1 2 3 4         5    6
+^ x y z direction auto command
+setblock ~2 ~-1 ~3 chain_command_block[facing=south]{auto:1,Command:"fill ~ ~ ~-3 ~2 ~4 ~-3 air replace sign"}
+^ 1 2 3 4         5    6
+^ x y z direction auto command
+setblock ~2 ~-1 ~4 chain_command_block[facing=south]{auto:1,Command:"fill ~ ~ ~-4 ~2 ~4 ~-4 air replace wall_sign"}
+^ 1 2 3 4         5    6
+^ x y z direction auto command
+setblock ~2 ~-1 ~5 chain_command_block[facing=up]{auto:1,Command:"fill ~ ~ ~-5 ~2 ~4 ~-5 air replace lever"}
+^ 1 2 3 4         5    6
+^ x y z direction auto command
+setblock ~2 ~0 ~5 chain_command_block[facing=up]{auto:1,Command:"fill ~-1 ~-2 ~-5 ~3 ~5 ~2 air"}
+setblock ~2 ~-1 ~1 minecraft:dirt
+setblock ~2 ~-1 ~0 stone_button[facing=north]
+
+^ This cleans up the one command block mess.
 setblock ~ ~1 ~ minecraft:chain_command_block[facing=up]{auto:1,Command:"fill ~ ~ ~ ~ ~-2 ~ air"}
 setblock ~ ~ ~ minecraft:command_block[facing=up]{auto:1,Command:"kill @e[type=minecraft:command_block_minecart,distance=..2]"}
