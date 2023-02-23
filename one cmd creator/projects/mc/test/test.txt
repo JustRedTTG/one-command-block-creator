@@ -2,7 +2,7 @@
 $default-start
 
 ^ The following imports the functions project.
-$<functions
+$<mc.functions
 
 ^ Run the box function
 ^    x y  z l h w gb    sb1  sb2

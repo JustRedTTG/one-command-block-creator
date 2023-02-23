@@ -1,5 +1,5 @@
 $default-start
-$<functions
+$<mc.functions
 ^Project name: tntfun
 
 $box 1 -2 0 4 5 5 obsidian black_concrete bedrock
