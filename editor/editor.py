@@ -13,7 +13,7 @@ from common import create_title, mouse_rect, surface_rect, file_name, cursor_ind
 from Texts import Texts
 pe.init()
 
-# logger = Logger()
+logger = Logger()
 config = cfg_mngr.initialize()
 load_project(config)
 configure_texts(config)
@@ -331,7 +331,7 @@ def code_sub_panel():
                 i2 += 1
             config.code_sub_panel_surface.stamp(
                 list_used[i].obj,
-                (0, y)
+                (config.style.code_panel_padding, y)
             )
             y += config.code_text_height or 1
         pe.draw.line(config.style.background_shadow,
@@ -369,5 +369,5 @@ while True:
     if config.top_sub_panel_surface:
         pe.display.blit(config.top_sub_panel_surface, config.top_sub_panel_surface.pos)
 
-    # logger.render()
+    #logger.render()
     pe.display.update(60)

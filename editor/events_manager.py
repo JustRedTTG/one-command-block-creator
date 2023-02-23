@@ -81,7 +81,7 @@ def handle_event(event: pe.pygame.event.Event, config: Config):
         config.file_panel_surface = None
         config.left_panel_surface = None
         config.top_panel_active = False
-        
+
         config.top_sub_panel_active = False
         config.left_panel_active = False
         config.file_panel_active = False
